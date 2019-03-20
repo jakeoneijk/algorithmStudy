@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 public class baekjoon2448 {
 
@@ -17,16 +19,18 @@ public class baekjoon2448 {
     }
 
     public static String[] treeRecursive(String[] tree,int n){
-        if(n == 2){
-            return printTree3(tree);
-        }else{
-            return treeRecursive(printTree3(tree),n/2);
+        int k = n;
+        String[] result = printTree3(tree);
+        while(k > 2){
+            result = printTree3(result);
+            k = k/2;
         }
+        return result;
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) throws Exception{
         String[] starTree = {"  *  "," * * ","*****"};
-        double input = new Scanner(System.in).nextInt();
+        double input = Double.parseDouble(new BufferedReader(new InputStreamReader(System.in)).readLine());
         input = input/3;
 
         String[] aa = treeRecursive(starTree,(int)input);
